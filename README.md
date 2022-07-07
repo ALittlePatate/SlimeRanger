@@ -31,9 +31,9 @@ This uses [BepInEx](https://github.com/BepInEx/BepInEx).
 ## Building from source
 
 0. Clone the repository
-1. Download [a BE build of BeInEx](https://builds.bepinex.dev/projects/bepinex_be).
+1. Download [a BE build of BepInEx](https://builds.bepinex.dev/projects/bepinex_be).
 2. Extract all the files from `BepInEx_UnityMono_x64_*******_*.*.*-be.***.zip` to `C:\Program Files (x86)\Steam\steamapps\common\Slime Rancher`
-3. Start your game. BeInEx will generate useful stuff. Wait a bit then close the game.
+3. Start your game. BepInEx will generate useful stuff. Wait a bit then close the game.
 4. Open the .sln file of SlimeRanger in Visual Studio (i used VS2022).
 5. Go to : Project --> Add a reference --> Browse --> Click on the browse button in the down right corner of the window.
 6. Add those files :
@@ -50,8 +50,8 @@ You can add me on discord at patate#1252
 For teaching me the basics :
 * [A Begginner's Guide To Hacking Unity Games](https://www.unknowncheats.me/wiki/A_Beginner%27s_Guide_To_Hacking_Unity_Games)
 
-For teaching me how to make a mod using BeInEx :
-* [BeInEx docs](https://docs.bepinex.dev/master/articles/dev_guide/plugin_tutorial/index.html)
+For teaching me how to make a mod using BepInEx :
+* [BepInEx docs](https://docs.bepinex.dev/master/articles/dev_guide/plugin_tutorial/index.html)
 
 For teaching me about the UnityEngine API :
 * [Unity User Manual 2020.3 (LTS)](https://docs.unity3d.com/Manual/index.html)
