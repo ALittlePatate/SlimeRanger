@@ -1,0 +1,5 @@
+#Visual studio stuff
+.vs
+.git
+bin
+obj
