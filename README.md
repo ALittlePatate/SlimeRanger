@@ -1,9 +1,9 @@
+# Unknowncheats thread [here](https://www.unknowncheats.me/forum/unity/505620-slime-rancher-multihack.html)
+
 # SlimeRanger
 
 This is a cheat for the game Slime Rancher, since the 2nd one has been announced i am very hyped so i made this in a day, i will probably push updates to add stuff.
 This uses [BepInEx](https://github.com/BepInEx/BepInEx).
-
-# Unknowncheats thread [here](https://www.unknowncheats.me/forum/unity/505620-slime-rancher-multihack.html)
 
 ## Features
 * An IMGUI menu thanks to UnityEngine
