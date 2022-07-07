@@ -21,7 +21,7 @@ This uses [BepInEx](https://github.com/BepInEx/BepInEx).
 ## Installation
 
 0. [Build the cheat from source](https://github.com/ALittlePatate/SlimeRanger#building-from-source).
-1. Put the SlimeRanger.dll file inside `C:\Program Files (x86)\Steam\steamapps\common\Slime Rancher\BepInEx\plugins` folder.
+1. Put the SlimeRanger.dll (located in `SlimeRanger\bin\Release\net46`) file inside `C:\Program Files (x86)\Steam\steamapps\common\Slime Rancher\BepInEx\plugins` folder.
 2. Start the game, now you have successfully installed SlimeRanger. Use INSERT to open the menu
 
 ## Uninstallation
