@@ -24,9 +24,6 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>D:\Jeux\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="MonoMod.RuntimeDetour">
-      <HintPath>D:\Jeux\steamapps\common\Slime Rancher\BepInEx\core\MonoMod.RuntimeDetour.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>D:\Jeux\steamapps\common\Slime Rancher\SlimeRancher_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
