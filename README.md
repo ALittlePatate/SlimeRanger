@@ -19,6 +19,11 @@ This uses [BepInEx](https://github.com/BepInEx/BepInEx).
 * Fly (+ fly speed slider). This temporarily disables the jetpack to use space to fly. (uses AZERTY keybinds, I will update this with your ingame keybinds)
 * Save your position
 * Teleport to your saved position
+* Infinite jetpack (you can fly as high as you want)
+* Upgrade plot on buy : upgrades plots for you when you buy them without taking your money
+* Override max slot : lets you override the number of items you can have in one slot
+* Change time multiplier
+
 
 ## Installation
 
