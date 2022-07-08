@@ -31,8 +31,19 @@ namespace SlimeRanger
 
             if (Settings.Settings.fly)
             {
+                Settings.Settings.need_to_restore_gravity = true;
+                
+                Physics.set_gravity_Injected(ref Settings.Settings.zero_gravity);
                 Hacks.Misc.Fly(Settings.Settings.fly_speed);
             }
+
+            if (!Settings.Settings.fly && Settings.Settings.need_to_restore_gravity)
+            {
+                Settings.Settings.need_to_restore_gravity = false;
+                Physics.set_gravity_Injected(ref Settings.Settings.original_gravity);
+            }
+
+            Time.timeScale = (float)Settings.Settings.time_multiplier;
         }
 
         private void OnGUI()
@@ -53,6 +64,13 @@ namespace SlimeRanger
                 Statestoggle = new GUIStyle(GUI.skin.toggle)
                 {
                     fontSize = 20,
+                    fontStyle = FontStyle.Bold
+                };
+
+                GUIStyle Statestoggle_smol;
+                Statestoggle_smol = new GUIStyle(GUI.skin.toggle)
+                {
+                    fontSize = 10,
                     fontStyle = FontStyle.Bold
                 };
 
@@ -124,6 +142,18 @@ namespace SlimeRanger
                         Logger.LogInfo("Teleported to position : " + Settings.Settings.savedposition.ToString());
                     }
                 }
+
+                Settings.Settings.infinite_jetpack = GUI.Toggle(new Rect(350, Settings.Settings.y + 235, 130, 25), Settings.Settings.infinite_jetpack, "∞ jetpack", Statestoggle);
+                Settings.Settings.max_plot = GUI.Toggle(new Rect(350, Settings.Settings.y + 265, 130, 25), Settings.Settings.max_plot, "Upgrade plot on buy", Statestoggle_smol);
+
+                Settings.Settings.max_slot_override = GUI.Toggle(new Rect(350, Settings.Settings.y + 290, 130, 25), Settings.Settings.max_slot_override, "Override max slot", Statestoggle_smol);
+                GUI.Label(new Rect(350, Settings.Settings.y + 310, 200, 30), "Max : ");
+                Settings.Settings.max_slot = GUI.HorizontalSlider(new Rect(350, Settings.Settings.y + 330, 100, 10), Settings.Settings.max_slot, 0f, 1000f);
+                GUI.Label(new Rect(455, Settings.Settings.y + 325, 100, 30), ((int)Settings.Settings.max_slot).ToString());
+
+                GUI.Label(new Rect(500, Settings.Settings.y + 50, 200, 30), "Time multiplier :");
+                Settings.Settings.time_multiplier = GUI.HorizontalSlider(new Rect(500, Settings.Settings.y + 70, 100, 10), Settings.Settings.time_multiplier, 1f, 100f);
+                GUI.Label(new Rect(605, Settings.Settings.y + 65, 100, 30), ((int)Settings.Settings.time_multiplier).ToString());
             }
         }
     }

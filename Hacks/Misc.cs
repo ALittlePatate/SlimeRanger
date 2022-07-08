@@ -26,14 +26,15 @@ namespace SlimeRanger.Hacks
 			{
 				pos += -tpp.transform.right * speed * Time.deltaTime;
 			}
-			if (Input.GetKey(KeyCode.Keypad8))
+			if (Input.GetKey(KeyCode.Space))
 			{
 				pos += tpp.transform.up * speed * Time.deltaTime;
 			}
-			if (Input.GetKey(KeyCode.Keypad2))
+			if (Input.GetKey(KeyCode.LeftShift))
 			{
 				pos += -tpp.transform.up * speed * Time.deltaTime;
 			}
+
 			Misc.SetPlayerPosition(pos);
 		}
 
@@ -42,7 +43,7 @@ namespace SlimeRanger.Hacks
             StateHelpers.GetPlayerState().AddCurrency(amount, type);
         }
 
-        public static void AddKey()
+		public static void AddKey()
         {
             StateHelpers.GetPlayerState().AddKey();
         }
@@ -62,5 +63,6 @@ namespace SlimeRanger.Hacks
             TeleportablePlayer tpp = UnityEngine.Object.FindObjectOfType<TeleportablePlayer>();
             tpp.playerEventHandler.Position.Set(position);
         }
-    }
+
+	}
 }

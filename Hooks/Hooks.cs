@@ -3,6 +3,8 @@ using HarmonyLib;
 using SlimeRanger.Settings;
 using SlimeRanger.Helpers;
 using System.Runtime;
+using System.Linq;
+using System.Reflection;
 using System;
 
 namespace SlimeRanger.Hooks
@@ -22,6 +24,21 @@ namespace SlimeRanger.Hooks
                     __result = true;
                 }
                 
+                return;
+            }
+        }
+
+        [HarmonyPatch(typeof(GordoDisplayOnMap))]
+        [HarmonyPatch(nameof(GordoDisplayOnMap.ShowOnMap))] //annotation boiler plate to tell Harmony what to patch. Refer to docs.
+        static class GordoDisplayOnMap_ShowOnMap
+        {
+            static void Postfix(ref bool __result)
+            {
+                if (Settings.Settings.map_reveal)
+                {
+                    __result = true;
+                }
+
                 return;
             }
         }
@@ -85,7 +102,7 @@ namespace SlimeRanger.Hooks
 
         [HarmonyPatch(typeof(EnergyJetpack))]
         [HarmonyPatch("CanStart_Jetpack")] //annotation boiler plate to tell Harmony what to patch. Refer to docs.
-        static class PlayerState_CanStart_Jetpack
+        static class EnergyJetpack_CanStart_Jetpack
         {
             static void Postfix(ref bool __result)
             {
@@ -93,6 +110,76 @@ namespace SlimeRanger.Hooks
                 {
                     __result = false;
                 }
+                return;
+            }
+        }
+
+        [HarmonyPatch(typeof(EnergyJetpack))]
+        [HarmonyPatch("DownwardExtraGravity")] //annotation boiler plate to tell Harmony what to patch. Refer to docs.
+        static class EnergyJetpack_DownwardExtraGravity
+        {
+            static void Prefix(ref float y, ref float yVel)
+            {
+                if (Settings.Settings.infinite_jetpack)
+                {
+                    yVel = 0f;
+                    y = 0f;
+                }
+                
+                return;
+            }
+        }
+
+        [HarmonyPatch(typeof(LandPlotUI))]
+        [HarmonyPatch("BuyPlot")] //annotation boiler plate to tell Harmony what to patch. Refer to docs.
+        static class LandPlotUI_BuyPlot
+        {
+            static void Prefix(ref LandPlotUI.PlotPurchaseItem plot)
+            {
+                if (Settings.Settings.max_plot)
+                {
+                    Settings.Settings.plot = plot;
+                }
+                return;
+            }
+        }
+
+        [HarmonyPatch(typeof(LandPlotUI))]
+        [HarmonyPatch("BuyPlot")] //annotation boiler plate to tell Harmony what to patch. Refer to docs.
+        static class LandPlotUI_BuyPlot_post
+        {
+            static void Postfix(ref bool __result)
+            {
+                if (__result == true && Settings.Settings.plot != null && Settings.Settings.max_plot)
+                {
+                    Settings.Settings.plot.plotPrefab.gameObject.SetActive(true);
+
+                    LandPlot landPlot = UnityEngine.Object.FindObjectOfType<LandPlot>();
+
+                    foreach (LandPlot.Upgrade upgrade in Enum.GetValues(typeof(LandPlot.Upgrade)))
+                    {
+                        if (upgrade == LandPlot.Upgrade.SOLAR_SHIELD) //yeah nah we don't want solar shield, most of the slimes don't need that
+                        {
+                            continue;
+                        }
+                        landPlot.AddUpgrade(upgrade);
+                    }
+                }
+                return;
+            }
+        }
+
+        [HarmonyPatch(typeof(AmmoModel))]
+        [HarmonyPatch(nameof(AmmoModel.GetSlotMaxCount))] //annotation boiler plate to tell Harmony what to patch. Refer to docs.
+        static class AmmoModel_GetSlotMaxCount
+        {
+            static void Postfix(ref int __result)
+            {
+                if (Settings.Settings.max_slot_override)
+                {
+                    __result = (int)Settings.Settings.max_slot;
+                }
+                
                 return;
             }
         }
